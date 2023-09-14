@@ -9,7 +9,15 @@
 	Hello GitHub!  
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
+<P id="p1">  The time on the server is ${serverTime}. </P>
+<P id="p2">  The time on the server is ${serverTime}. </P>
+<P id="p3">  The time on the server is ${serverTime}. </P>
+
+<script>
+	document.querySelector('#p1').style.color = 'green';
+	document.querySelector('#p2').style.color = '#022D36';
+	document.querySelector('#p3').style.fontSize = '50px';
+</script>
 
 </body>
 </html>
