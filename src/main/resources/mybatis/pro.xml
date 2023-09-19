@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pro">
+
+	<insert id="proadd">
+		INSERT INTO pro_users
+		(
+			pro_email
+			, pro_passwd
+			, pro_m
+			, pro_name
+			, pro_adres
+			, pro_tell
+			, pro_bnumber
+			, pro_b
+			, pro_anumber
+			, pro_a
+			, pro_sbscrbde
+		)
+		VALUES (
+			#{proEmail}
+			, #{proPasswd}
+			, #{proM}
+			, #{proName}
+			, #{proAdres}
+			, #{proTell}
+			, #{proBnumber}
+			, #{proB}
+			, #{proAnumber}
+			, #{proA}
+			, now()
+		)
+	</insert>
+
+	 
+	<select id="total" resultType="Integer">
+		SELECT COUNT(*) 
+		FROM  pro_users
+	</select>
+	
+	<select id="prolist" resultType="ProUsersVO">
+		SELECT *
+		FROM  pro_users
+	</select>
+	
+	<select id="proselect" resultType="ProUsersVO">
+		SELECT * 
+		FROM pro_users
+		WHERE pro_unumber = #{proUnumber}
+	</select>
+	
+	<update id="proupdate">
+		UPDATE pro_users
+		SET 
+			 pro_passwd = #{proPasswd}
+			, pro_m = #{proM}
+			, pro_name = #{proName}
+			, pro_adres = #{proAdres}
+			, pro_tell = #{proTell}
+			, pro_bnumber = #{proBnumber}
+			, pro_b = #{proB}
+			, pro_anumber = #{proAnumber}
+			, pro_a = #{proA}
+		
+		WHERE pro_unumber = #{proUnumber}
+	</update>
+	
+	<delete id="prodelete">
+		DELETE FROM pro_users
+		WHERE pro_unumber = #{proUnumber}
+	</delete>
+	
+</mapper>
