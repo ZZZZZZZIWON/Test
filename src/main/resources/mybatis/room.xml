@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="room">
+
+	<resultMap type="kr.ac.kopo.vo.RoomVO" id="roomvo">
+		<result property="roomNo" 		column="room_no" />
+		<result property="agencyNo" 	column="agency_no" />
+		<result property="roomType" 	column="room_type" />
+		<result property="address" 		column="address" />
+		<result property="dong" 		column="dong" />
+		<result property="ho" 			column="ho" />
+		<result property="memoShort" 	column="memo_short" />
+		<result property="memoDetail" 	column="memo_detail" />
+		<result property="registDate" 	column="regist_date" />
+		<result property="updateDate" 	column="update_date" />
+		<result property="useAt" 		column="use_at" />
+	</resultMap>
+	
+	<select id="list" resultMap="roomvo">
+		SELECT *	FROM room WHERE address LIKE '%대덕구%'
+		<!-- WHERE
+		<if test="searchWrd != null and searchWrd !=''">
+		    (fctry_rdnmadr LIKE CONCAT('%', #{searchWrd},'%') or  
+		    fctry_cmpnm LIKE CONCAT('%', #{searchWrd},'%'))
+		</if> -->
+	</select>
+
+</mapper>

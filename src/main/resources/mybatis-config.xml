@@ -11,13 +11,10 @@
 	</settings>
   
   	<typeAliases>
-  		<typeAlias type="kr.ac.kopo.user.web.UserVO" alias="UserVO"/>
-  		<typeAlias type="kr.ac.kopo.user.web.ProUsersVO" alias="ProUsersVO"/>
+  		<typeAlias type="kr.ac.kopo.vo.RoomVO" alias="RoomVO"/>
   	</typeAliases>
   
   	<mappers>
-  		<mapper resource="mybatis/user.xml"/>
-  		<mapper resource="mybatis/pro.xml"/>
-  		<mapper resource="mybatis/login.xml"/>
+  		<mapper resource="mybatis/room.xml" />
   	</mappers>
   </configuration>

@@ -51,7 +51,7 @@
         <div class="option">
             <div>
                 <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="대전폴리텍" id="keyword" size="15"> 
+                    키워드 : <input type="text" value="대전폴리텍" id="keyword" size="15" > 
                     <button type="submit">검색하기</button> 
                 </form>
             </div>
@@ -70,28 +70,17 @@
 // 마커를 담을 배열입니다
 var markers = [];
 
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {
         center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
-    };  
+    };
 
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
+// 지도를 생성합니다
+var map = new kakao.maps.Map(mapContainer, mapOption);
 
-// 장소 검색 객체를 생성합니다
-var ps = new kakao.maps.services.Places();  
-
-// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
-var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-
-// 키워드로 장소를 검색합니다
-searchPlaces();
-
-
-// 키워드 검색을 요청하는 함수입니다
+// 키워드로 장소를 검색하고 결과를 받아올 함수
 function searchPlaces() {
-
     var keyword = document.getElementById('keyword').value;
 
     if (!keyword.replace(/^\s+|\s+$/g, '')) {
@@ -99,35 +88,25 @@ function searchPlaces() {
         return false;
     }
 
-    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-    ps.keywordSearch( keyword, placesSearchCB); 
+    // 서버로 키워드를 전달하고 검색 결과를 받아옴
+    $.ajax({
+        url: "/map", // 서버의 컨트롤러 경로
+        method: "POST",
+        data: { keyword: keyword }, // 키워드를 전달
+        success: function (data) {
+            // 서버로부터 받은 데이터를 가상의 DB에서 받은 것으로 가정
+            var places = data;
+
+            // 검색 결과를 표시하는 함수 호출
+            displayPlaces(places);
+        },
+        error: function () {
+            alert('검색 중 오류가 발생했습니다.');
+        },
+    });
 }
 
-// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
-function placesSearchCB(data, status, pagination) {
-    if (status === kakao.maps.services.Status.OK) {
-
-        // 정상적으로 검색이 완료됐으면
-        // 검색 목록과 마커를 표출합니다
-        displayPlaces(data);
-
-        // 페이지 번호를 표출합니다
-        displayPagination(pagination);
-
-    } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-
-        alert('검색 결과가 존재하지 않습니다.');
-        return;
-
-    } else if (status === kakao.maps.services.Status.ERROR) {
-
-        alert('검색 결과 중 오류가 발생했습니다.');
-        return;
-
-    }
-}
-
-// 검색 결과 목록과 마커를 표출하는 함수입니다
+// 검색결과 목록과 마커를 표출하는 함수입니다
 function displayPlaces(places) {
 
     var listEl = document.getElementById('placesList'), 
@@ -193,6 +172,7 @@ function getListItem(index, places) {
                 '<div class="info">' +
                 '   <h5>' + places.place_name + '</h5>';
 
+    // 검색 결과에서 가져온 주소 정보를 표시합니다
     if (places.road_address_name) {
         itemStr += '    <span>' + places.road_address_name + '</span>' +
                     '   <span class="jibun gray">' +  places.address_name  + '</span>';
@@ -200,7 +180,7 @@ function getListItem(index, places) {
         itemStr += '    <span>' +  places.address_name  + '</span>'; 
     }
                  
-      itemStr += '  <span class="tel">' + places.phone  + '</span>' +
+    itemStr += '  <span class="tel">' + places.phone  + '</span>' +
                 '</div>';           
 
     el.innerHTML = itemStr;
@@ -208,6 +188,7 @@ function getListItem(index, places) {
 
     return el;
 }
+
 
 // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 function addMarker(position, idx, title) {
@@ -284,9 +265,6 @@ function removeAllChildNods(el) {
         el.removeChild (el.lastChild);
     }
 }
-
-
- 
 </script>
 </body>
 </html>
