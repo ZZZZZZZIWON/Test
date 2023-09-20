@@ -15,10 +15,25 @@
 		<result property="registDate" 	column="regist_date" />
 		<result property="updateDate" 	column="update_date" />
 		<result property="useAt" 		column="use_at" />
+		<result property="lat" 			column="lat" />
+		<result property="lng" 			column="lng" />
 	</resultMap>
 	
 	<select id="list" resultMap="roomvo">
-		SELECT *	FROM room WHERE address LIKE '%대덕구%'
+		SELECT *	FROM room 
+		<where>
+			<if test="search != #{keyword}">		<!-- 오라클은 CONCAT을 2개값만 허용해서 이중으로 사용 (myDB는 3개) -->
+				address LIKE CONCAT(CONCAT('%', #{keyword}), '%')	
+			</if>
+			
+			<if test="search == 2">
+				lat LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			
+			<if test="search == 3">
+				lng LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+		</where>
 		<!-- WHERE
 		<if test="searchWrd != null and searchWrd !=''">
 		    (fctry_rdnmadr LIKE CONCAT('%', #{searchWrd},'%') or  

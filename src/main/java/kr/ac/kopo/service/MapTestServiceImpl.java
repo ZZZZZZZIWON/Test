@@ -14,8 +14,8 @@ public class MapTestServiceImpl implements MapTestService {
 	MapTestDao dao;
 	
 	@Override
-	public List<RoomVO> selectRoom() {
-		return dao.list();
+	public List<RoomVO> selectRoom(String keyword) {
+		return dao.selectRoom(keyword);
 	}
 
 }

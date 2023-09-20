@@ -7,9 +7,9 @@
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="org.mariadb.jdbc.Driver"></property>
 		
-		<property name="jdbcUrl" value="jdbc:mariadb://172.16.144.22:3306/ireproject_db"></property>
-		<property name="username" value="ireproject_user"></property> 
-		<property name="password" value="ireproject_pass"></property>
+		<property name="jdbcUrl" value="jdbc:mariadb://172.16.144.51:3306/poly1"></property>
+		<property name="username" value="poly1"></property> 
+		<property name="password" value="1234"></property>
 	</bean>
 	
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">

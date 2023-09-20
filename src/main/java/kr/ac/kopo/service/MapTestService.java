@@ -6,6 +6,6 @@ import kr.ac.kopo.vo.RoomVO;
 
 public interface MapTestService {
 
-	List<RoomVO> selectRoom();
+	List<RoomVO> selectRoom(String keyword);
 
 }

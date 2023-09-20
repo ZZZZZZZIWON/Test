@@ -14,8 +14,9 @@ public class MapTestDaoImpl implements MapTestDao {
 	SqlSession sql;
 	
 	@Override
-	public List<RoomVO> list() {
-		return sql.selectList("room.list");
+	public List<RoomVO> selectRoom(String keyword) {
+		return sql.selectList("room.list",keyword);
 	}
 
+	
 }
