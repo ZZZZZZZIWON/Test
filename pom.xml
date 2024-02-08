@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>kr.ac</groupId>
 	<artifactId>kopo</artifactId>
-	<name>ireProject</name>
+	<name>Test</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -159,7 +159,7 @@
 			<artifactId>mariadb-java-client</artifactId>
 			<version>3.1.2</version>
 		</dependency>
-
+		
 		<!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
 		<dependency>
 		    <groupId>com.zaxxer</groupId>
@@ -167,7 +167,13 @@
 		    <version>3.4.5</version>
 		</dependency>
 		
-
+	    <!-- PostgreSQL JDBC 드라이버 -->
+	    <dependency>
+	        <groupId>org.postgresql</groupId>
+	        <artifactId>postgresql</artifactId>
+	        <version>42.2.18</version> <!-- 사용하려는 버전으로 변경 -->
+	    </dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>

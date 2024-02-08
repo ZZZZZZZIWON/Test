@@ -11,10 +11,12 @@
 	</settings>
   
   	<typeAliases>
-  		<typeAlias type="kr.ac.kopo.vo.RoomVO" alias="RoomVO"/>
+  		<typeAlias type="kr.ac.kopo.vo.RoomVO" 		alias="RoomVO"/>
+  		<typeAlias type="kr.ac.kopo.vo.MyTableVO" 	alias="MyTableVO"/>
   	</typeAliases>
   
   	<mappers>
   		<mapper resource="mybatis/room.xml" />
+  		<mapper resource="mybatis/mytable.xml" />
   	</mappers>
   </configuration>

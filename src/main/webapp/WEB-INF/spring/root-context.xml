@@ -2,15 +2,26 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="org.mariadb.jdbc.Driver"></property>
-		
 		<property name="jdbcUrl" value="jdbc:mariadb://172.16.144.51:3306/poly1"></property>
 		<property name="username" value="poly1"></property> 
 		<property name="password" value="1234"></property>
+	</bean> 
+	-->
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+	    <property name="driverClassName" value="org.postgresql.Driver"></property>
+	    
+	    <property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/postgres"></property>
+	    <property name="username" value="postgres"></property>
+	    <property name="password" value="root"></property>
 	</bean>
+	
+	
 	
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 		<constructor-arg ref="hikariConfig"></constructor-arg>
